@@ -1,0 +1,476 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap");
+
+// slide-fade
+@keyframes slide-fade {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  background-image: 
+    linear-gradient(0deg, rgba(0, 0, 0, .8) 0%, rgba(255, 132, 0, .8) 100%, rgba(253, 45, 45, .8) 100%),
+    url('bg.webp');
+  background-blend-mode: normal;
+  direction: rtl;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Assistant", sans-serif;
+
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.site-wrapper {
+  height: calc(100vh - 10px);
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+
+  .top-bar {
+    display: flex;
+    justify-content: space-around;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    border: none;
+    border-radius: 0 0 20px 20px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(172, 89, 0, 0.5);
+    min-height: 60px;
+    overflow: hidden;
+    // animate to slide from top
+    animation: slide-fade 0.5s ease-out;
+
+    > a {
+      background-color: rgba(0, 0, 0, 0.5);
+      flex-grow: 1;
+      height: 60px;
+      color: white;
+      font-size: 23px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.3s all ease-out;
+
+      &.active {
+        background-color: rgba(172, 89, 0, 0.5);
+        box-shadow: inset 0 0 15px 2px rgba(0, 0, 0, 0.411);
+      }
+
+      &:hover {
+        background-color: rgba(172, 89, 0, 0.5);
+      }
+    }
+  }
+}
+.App {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+.Food {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.food-menu {
+  margin-top: 50px;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.ant-menu-submenu-popup {
+  top: 100px !important;
+  direction: rtl;
+}
+.tafrit{
+  width: 100vw;
+  height: 100%;
+}
+.back-image{
+  width: 100vw;
+  height: 100%;
+}
+
+.list{
+  position: absolute;
+  top:0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+
+  h2{
+    text-decoration:underline;
+  }
+}
+
+.rows {
+  display: grid;
+  grid-template-columns: repeat(5, 300px);
+  direction: rtl;
+  border: 1px solid black;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  place-items: center;
+  height: 50px;
+  font-size: 25px;
+  text-decoration: underline;
+  font-weight: bolder;
+}
+.Column {
+  display: grid;
+  grid-template-columns: repeat(5, 300px);
+  direction: rtl;
+  border: 1px solid black;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  place-items: center;
+  height: 50px;
+  font-size: 20px;
+}
+.File {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: flex-end;
+  direction: rtl;
+  justify-content: flex-start;
+}
+
+.ant-table-tbody .ant-table-row:nth-last-child(2):hover .ant-table-cell {
+  background-color: transparent !important;
+  font-weight: bold;
+}
+.ant-table-tbody .ant-table-row:nth-last-child(2) {
+  background-color: wheat;
+  font-weight: bold;
+}
+.ant-table-tbody .ant-table-row:last-child:hover .ant-table-cell {
+  background-color: transparent;
+  font-weight: bold;
+}
+.ant-table-tbody .ant-table-row:last-child {
+  background-color: pink;
+  font-weight: bold;
+}
+
+.ant-menu-submenu::before {
+  color: black !important;
+  border: none !important;
+}
+
+.ant-menu-submenu::after {
+  color: black !important;
+  border: none !important;
+}
+
+.ant-menu-submenu-title {
+  color: black !important;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 120vh;
+  gap: 30px;
+  margin-top: 70px;
+
+  img {
+    animation: fadein 3s;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+.wrapper {
+  color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.app-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: contain, cover;
+  background-position: center;
+  &.home {
+    background-image: url('home-bg.webp');
+  }
+
+
+  
+  .text-area {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    padding: 80px 20px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: slide-fade 0.5s .5s ease-out forwards;
+    font-size: 25px;
+    direction: rtl;
+    font-weight: bold;
+    border: 4px solid rgba(255, 132, 0, .8);
+  }
+}
+
+.genderSelection {
+  width: 100px;
+  border-radius: 50px 50px;
+  border: 1px black solid;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.second-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectSection {
+  width: 100px;
+  direction: rtl;
+  margin-bottom: 10px;
+  height: 30px;
+}
+
+.ageInput {
+  width: 100px;
+  border-radius: 50px 50px;
+  border: 1px black solid;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.heightInput {
+  width: 100px;
+  border-radius: 50px 50px;
+  border: 1px black solid;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.weightInput {
+  width: 100px;
+  border-radius: 50px 50px;
+  border: 1px black solid;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.A input {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px black solid;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.workoutsAmountSection {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px solid black;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.B input {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px black solid;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.C input {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px black solid;
+  font-size: 20px;
+}
+
+.activeOrNotSelect {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px solid black;
+  direction: rtl;
+  color: white;
+  margin-bottom: 10px;
+  height: 30px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  height: 0;
+
+  h1 {
+    color: white;
+    text-shadow: black 5px 3px 2px;
+    font-size: 70px;
+    text-decoration: underline;
+  }
+}
+
+.aerobicSelect {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px solid black;
+  color: white;
+  margin-bottom: 10px;
+  height: 30px;
+}
+
+.image1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.image2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+.details {
+  color: aquamarine;
+  display: flex;
+  flex-direction: row;
+  direction: rtl;
+  align-items: center;
+
+  input {
+    width: 200px;
+    border-radius: 50px 50px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    background-color: transparent;
+    height: 30px;
+    color: white;
+  }
+
+  input::placeholder {
+    color: white;
+  }
+}
+
+.details1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.details2 {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.details3 {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+.meal{
+  .ant-select-selection-placeholder {
+    color: #fff !important;
+    font-size: 20px !important;
+  }
+  
+  .ant-select-selector {
+    color: white !important;
+    font-size: 20px !important;
+
+  }
+}
+.ageSelectSection {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px solid black;
+  color: white;
+  height: 30px;
+
+  margin-bottom: 10px;
+}
+
+.ant-select-selection-placeholder {
+  color: #fff !important;
+}
+
+.ant-select-selector {
+  color: white !important;
+}
+
+.distance input {
+  width: 200px;
+  border-radius: 50px 50px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  background-color: transparent;
+  height: 30px;
+  color: white;
+}
