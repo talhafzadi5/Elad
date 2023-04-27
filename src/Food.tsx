@@ -39,10 +39,10 @@ const Food = () => {
         }
 
         const nextList = [...data];
-        nextList[nextList.length - 2].proteinGram = (totalProtein.toFixed(3)) + " גרם";
-        nextList[nextList.length - 2].carbonGram = (totalCarbs.toFixed(3)) + " גרם";;
-        nextList[nextList.length - 2].fatGram = (totalFats.toFixed(3)) + " גרם";;
-        nextList[nextList.length - 2].calories = (totalCalories.toFixed(3));
+        nextList[nextList.length - 2].proteinGram = (totalProtein.toFixed(1)) + " גרם";
+        nextList[nextList.length - 2].carbonGram = (totalCarbs.toFixed(1)) + " גרם";;
+        nextList[nextList.length - 2].fatGram = (totalFats.toFixed(1)) + " גרם";;
+        nextList[nextList.length - 2].calories = (totalCalories.toFixed(1));
         
         if (nextList.length === 2) {
             nextList[nextList.length - 1].carbonGram = 0 + "%"
@@ -50,12 +50,12 @@ const Food = () => {
             nextList[nextList.length - 1].fatGram = 0 + "%";
         }
         else {
-            nextList[nextList.length - 1].carbonGram = ((totalCarbs * 4 / totalCalories * 100).toFixed(3)) + "%";
-            nextList[nextList.length - 1].proteinGram = ((totalProtein * 4 / totalCalories * 100).toFixed(3)) + "%";
-            nextList[nextList.length - 1].fatGram = (totalFats * 9 / totalCalories * 100).toFixed(3) + "%";
+            nextList[nextList.length - 1].carbonGram = ((totalCarbs * 4 / totalCalories * 100).toFixed(1)) + "%";
+            nextList[nextList.length - 1].proteinGram = ((totalProtein * 4 / totalCalories * 100).toFixed(1)) + "%";
+            nextList[nextList.length - 1].fatGram = (totalFats * 9 / totalCalories * 100).toFixed(1) + "%";
         }
 
-        nextList[nextList.length - 1].calories = (totalCalories.toFixed(3));
+        nextList[nextList.length - 1].calories = (totalCalories.toFixed(1));
 
 
         setData(nextList);

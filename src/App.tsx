@@ -7,6 +7,7 @@ function App() {
     <>
       <div className="App">
         <div className="app-wrapper home">
+          <img src="./home-bg.webp"></img>
           <div className='text-area'>
             שלום,
             <div>
