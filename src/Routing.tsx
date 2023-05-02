@@ -1,9 +1,10 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import App from "./App";
-import Calculation from "./Calculation";
-import Gallery from "./Gallery";
+import Calculation from "../src/Calculation";
+import Gallery from "../src/Gallery";
 import Food from "./Food";
 import "./style.scss"
+import WorkoutRoutine from "./WorkoutRoutine";
 
 interface Link {
     path: string;
@@ -19,6 +20,8 @@ const Routing = () => {
         { path: '/gallery', name: 'גלריה' },
         { path: '/calculation', name: 'חישוב' },
         { path: '/food', name: 'תפריט תזונה' },
+        { path: '/workoutroutine', name: 'תכנית אימונים' },
+
     ];
 
     // highlight current path
@@ -44,6 +47,8 @@ const Routing = () => {
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/calculation" element={<Calculation />} />
                 <Route path="/food" element={<Food />} />
+                <Route path="/workoutroutine" element={<WorkoutRoutine />} />
+
             </Routes>
         </div>
     )

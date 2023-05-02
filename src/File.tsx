@@ -35,93 +35,207 @@ const File = (props: any) => {
                                     <div> <h2 style={{fontSize:"30px"}}>ארוחת-בוקר</h2>
                                     
                                         {props.data.filter((d: any) => d.meal === "בוקר").map((da: any) => {
-                                            return (
-                                                <>
-                                                       <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
-                                                        חלבון  - {da.proteinGram},
-                                                        פחמימות -  {da.carbonGram},
-                                                        שומנים -  {da.fatGram},
-                                                        קלוריות -  {da.calories}
-                                                    </div>
-                                                </>
-                                            )
+                                            if(da.quantity > 1)
+                                            {
+                                                return (
+                                                    <>
+                                                           <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>• X{da.quantity} {da.name} 
+                                                           -
+                                                            חלבון  - {da.proteinGram},
+                                                            פחמימות -  {da.carbonGram},
+                                                            שומנים -  {da.fatGram},
+                                                            קלוריות -  {da.calories}
+                                                        </div>
+                                                    </>
+                                                )
+                                            }
+                                            else{
+                                                return (
+                                                    <>
+                                                           <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
+                                                            חלבון  - {da.proteinGram},
+                                                            פחמימות -  {da.carbonGram},
+                                                            שומנים -  {da.fatGram},
+                                                            קלוריות -  {da.calories}
+                                                        </div>
+                                                    </>
+                                                )
+                                            }
+                                           
                                         })}</div>
                                     <div><h2 style={{fontSize:"30px"}}>ארוחת-ביניים-ראשונה</h2>
                                         {props.data.filter((d: any) => d.meal === "ביניים ראשונה").map((da: any) => {
-                                            return (
-                                                <>
-                                                    <div style={{fontSize:"25px", letterSpacing:"1px"}}>•{da.name} -
-                                                        חלבון  - {da.proteinGram},
-                                                        פחמימות -  {da.carbonGram},
-                                                        שומנים -  {da.fatGram},
-                                                        קלוריות -  {da.calories}
-                                                    </div>                                    </>
-                                            )
+                                             if(da.quantity > 1)
+                                             {
+                                                 return (
+                                                     <>
+                                                            <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>• X{da.quantity} {da.name} 
+                                                            -
+                                                             חלבון  - {da.proteinGram},
+                                                             פחמימות -  {da.carbonGram},
+                                                             שומנים -  {da.fatGram},
+                                                             קלוריות -  {da.calories}
+                                                         </div>
+                                                     </>
+                                                 )
+                                             }
+                                             else{
+                                                 return (
+                                                     <>
+                                                            <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
+                                                             חלבון  - {da.proteinGram},
+                                                             פחמימות -  {da.carbonGram},
+                                                             שומנים -  {da.fatGram},
+                                                             קלוריות -  {da.calories}
+                                                         </div>
+                                                     </>
+                                                 )
+                                             }
                                         })}</div>
                                     <div><h2 style={{fontSize:"30px"}}>ארוחת-צהריים</h2>
                                         {props.data.filter((d: any) => d.meal === "צהריים").map((da: any) => {
-                                            return (
-                                                <>
-                                                    <div style={{fontSize:"25px", letterSpacing:"1px"}}>•{da.name} -
-                                                        חלבון  - {da.proteinGram},
-                                                        פחמימות -  {da.carbonGram},
-                                                        שומנים -  {da.fatGram},
-                                                        קלוריות -  {da.calories}
-                                                    </div>
-                                                </>
-                                            )
+                                             if(da.quantity > 1)
+                                             {
+                                                 return (
+                                                     <>
+                                                            <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>• X{da.quantity} {da.name} 
+                                                            -
+                                                             חלבון  - {da.proteinGram},
+                                                             פחמימות -  {da.carbonGram},
+                                                             שומנים -  {da.fatGram},
+                                                             קלוריות -  {da.calories}
+                                                         </div>
+                                                     </>
+                                                 )
+                                             }
+                                             else{
+                                                 return (
+                                                     <>
+                                                            <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
+                                                             חלבון  - {da.proteinGram},
+                                                             פחמימות -  {da.carbonGram},
+                                                             שומנים -  {da.fatGram},
+                                                             קלוריות -  {da.calories}
+                                                         </div>
+                                                     </>
+                                                 )
+                                             }
                                         })}</div>
                                     <div> <h2 style={{fontSize:"30px"}}>ארוחת-ביניים-שניה</h2>
                                         {props.data.filter((d: any) => d.meal === "ביניים שנייה").map((da: any) => {
-                                            return (
-                                                <>
-                                                    <div style={{fontSize:"25px", letterSpacing:"1px"}}>•{da.name} -
-                                                        חלבון  - {da.proteinGram},
-                                                        פחמימות -  {da.carbonGram},
-                                                        שומנים -  {da.fatGram},
-                                                        קלוריות -  {da.calories}
-                                                    </div>
-                                                </>
-                                            )
+                                           if(da.quantity > 1)
+                                           {
+                                               return (
+                                                   <>
+                                                          <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>• X{da.quantity} {da.name} 
+                                                          -
+                                                           חלבון  - {da.proteinGram},
+                                                           פחמימות -  {da.carbonGram},
+                                                           שומנים -  {da.fatGram},
+                                                           קלוריות -  {da.calories}
+                                                       </div>
+                                                   </>
+                                               )
+                                           }
+                                           else{
+                                               return (
+                                                   <>
+                                                          <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
+                                                           חלבון  - {da.proteinGram},
+                                                           פחמימות -  {da.carbonGram},
+                                                           שומנים -  {da.fatGram},
+                                                           קלוריות -  {da.calories}
+                                                       </div>
+                                                   </>
+                                               )
+                                           }
                                         })}</div>
                                     <div> <h2 style={{fontSize:"30px"}}>ארוחת-ערב</h2>
                                         {props.data.filter((d: any) => d.meal === "ערב").map((da: any) => {
-                                            return (
-                                                <>
-                                                    <div style={{fontSize:"25px", letterSpacing:"1px"}}>•{da.name} -
-                                                        חלבון  - {da.proteinGram},
-                                                        פחמימות -  {da.carbonGram},
-                                                        שומנים -  {da.fatGram},
-                                                        קלוריות -  {da.calories}
-                                                    </div>
-                                                </>
-                                            )
+                                              if(da.quantity > 1)
+                                              {
+                                                  return (
+                                                      <>
+                                                             <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>• X{da.quantity} {da.name} 
+                                                             -
+                                                              חלבון  - {da.proteinGram},
+                                                              פחמימות -  {da.carbonGram},
+                                                              שומנים -  {da.fatGram},
+                                                              קלוריות -  {da.calories}
+                                                          </div>
+                                                      </>
+                                                  )
+                                              }
+                                              else{
+                                                  return (
+                                                      <>
+                                                             <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
+                                                              חלבון  - {da.proteinGram},
+                                                              פחמימות -  {da.carbonGram},
+                                                              שומנים -  {da.fatGram},
+                                                              קלוריות -  {da.calories}
+                                                          </div>
+                                                      </>
+                                                  )
+                                              }
                                         })}</div>
                                     <div> <h2 style={{fontSize:"30px"}}>סך-הכל</h2>
                                         {props.data.filter((d: any) => d.name === "סך הכל").map((da: any) => {
-                                            return (
-                                                <>
-                                                    <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>
-                                                        חלבון  - {da.proteinGram},
-                                                        פחמימות -  {da.carbonGram},
-                                                        שומנים -  {da.fatGram},
-                                                        קלוריות -  {da.calories}
-                                                    </div>
-                                                </>
-                                            )
+                                              if(da.quantity > 1)
+                                              {
+                                                  return (
+                                                      <>
+                                                             <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>• X{da.quantity} {da.name} 
+                                                             -
+                                                              חלבון  - {da.proteinGram},
+                                                              פחמימות -  {da.carbonGram},
+                                                              שומנים -  {da.fatGram},
+                                                              קלוריות -  {da.calories}
+                                                          </div>
+                                                      </>
+                                                  )
+                                              }
+                                              else{
+                                                  return (
+                                                      <>
+                                                             <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
+                                                              חלבון  - {da.proteinGram},
+                                                              פחמימות -  {da.carbonGram},
+                                                              שומנים -  {da.fatGram},
+                                                              קלוריות -  {da.calories}
+                                                          </div>
+                                                      </>
+                                                  )
+                                              }
                                         })}</div>
                                     <div> <h2 style={{fontSize:"30px"}}>אחוז-קלורי</h2>
                                         {props.data.filter((d: any) => d.name === "אחוז קלורי").map((da: any) => {
-                                            return (
-                                                <>
-                                                    <div style={{fontSize:"25px", letterSpacing:"1px"}}>
-                                                        חלבון  - {da.proteinGram},
-                                                        פחמימות -  {da.carbonGram},
-                                                        שומנים -  {da.fatGram},
-                                                        קלוריות -  {da.calories}
-                                                    </div>
-                                                </>
-                                            )
+                                             if(da.quantity > 1)
+                                             {
+                                                 return (
+                                                     <>
+                                                            <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>• X{da.quantity} {da.name} 
+                                                            -
+                                                             חלבון  - {da.proteinGram},
+                                                             פחמימות -  {da.carbonGram},
+                                                             שומנים -  {da.fatGram},
+                                                             קלוריות -  {da.calories}
+                                                         </div>
+                                                     </>
+                                                 )
+                                             }
+                                             else{
+                                                 return (
+                                                     <>
+                                                            <div style={{fontSize:"25px", letterSpacing:"1px"}} key={da.name}>•{da.name} -
+                                                             חלבון  - {da.proteinGram},
+                                                             פחמימות -  {da.carbonGram},
+                                                             שומנים -  {da.fatGram},
+                                                             קלוריות -  {da.calories}
+                                                         </div>
+                                                     </>
+                                                 )
+                                             }
                                         })}</div>
 
 

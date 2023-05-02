@@ -5,7 +5,7 @@ import "./style.scss"
 function App() {
   return (
     <>
-      <div className="App">
+     <div className="App">
         <div className="app-wrapper home">
           <img src="./home-bg.webp"></img>
           <div className='text-area'>

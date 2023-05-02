@@ -1,17 +1,16 @@
-
-
-
 const Column = (props:any) => {
     return (
 
         <>
             <div className="Column">
-          
-                <div className="name"> {props.name}</div>
-                <div className="protein"> {props.proteinGram}</div>
-                <div className="carbonGram">{props.carbonGram}</div>
-                <div className="fatGram">{props.fatGram}</div>
-                <div className="calories">{props.calories}</div>
+
+                <div style={{fontWeight:"bold"}} className="exercise"> {props.exercise}</div>
+                <div className="sets"> {props.sets}</div>
+                <div className="reps">{props.reps}</div>
+                <div className="rest">{props.rest}</div>
+                <div className="category">{props.category}</div>
+                <div className="group">{props.group}</div>
+
 
             </div>
         </>

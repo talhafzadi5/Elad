@@ -6,6 +6,7 @@
     transform: translateY(-50px);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -16,7 +17,7 @@ body {
   padding: 0;
   margin: 0;
   background-size: cover;
-  background-image: 
+  background-image:
     linear-gradient(0deg, rgba(0, 0, 0, .8) 0%, rgba(255, 132, 0, .8) 100%, rgba(253, 45, 45, .8) 100%),
     url('bg.webp');
   background-blend-mode: normal;
@@ -43,7 +44,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
 
   .top-bar {
     display: flex;
@@ -60,7 +61,7 @@ body {
     // animate to slide from top
     animation: slide-fade 0.5s ease-out;
 
-    > a {
+    >a {
       background-color: rgba(0, 0, 0, 0.5);
       flex-grow: 1;
       height: 60px;
@@ -85,6 +86,7 @@ body {
     }
   }
 }
+
 .App {
   flex: 1;
   width: 100%;
@@ -108,23 +110,38 @@ body {
   display: flex;
   justify-content: center;
 }
+.workout-menu{
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+.workout-routine {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  
+}
+
 
 .ant-menu-submenu-popup {
-  top: 100px !important;
+  top: 100%;
   direction: rtl;
 }
-.tafrit{
-  width: 100vw;
-  height: 100%;
-}
-.back-image{
+
+.tafrit {
   width: 100vw;
   height: 100%;
 }
 
-.list{
+.back-image {
+  width: 100vw;
+  height: 100%;
+}
+
+.list {
   position: absolute;
-  top:0;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,37 +149,52 @@ body {
   height: 100%;
 
 
-  h2{
-    text-decoration:underline;
+  h2 {
+    text-decoration: underline;
   }
 }
 
 .rows {
   display: grid;
-  grid-template-columns: repeat(5, 300px);
-  direction: rtl;
+  grid-template-columns: repeat(6, 200px);
   border: 1px solid black;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  width: 90vw;
+
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
   place-items: center;
-  height: 50px;
-  font-size: 25px;
+  height: 100%;
+  font-size: 30px;
   text-decoration: underline;
   font-weight: bolder;
+  padding-right: 20px;
+  letter-spacing: 1px;
+
 }
+
 .Column {
   display: grid;
-  grid-template-columns: repeat(5, 300px);
-  direction: rtl;
+  grid-template-columns: repeat(6, 200px);
   border: 1px solid black;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  width: 90vw;
+  font-size: 25px;
+  padding-right: 20px;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
   place-items: center;
-  height: 50px;
-  font-size: 20px;
+  height: 100%;
+  letter-spacing: 1px;
+
 }
+
 .File {
   display: flex;
   gap: 30px;
@@ -171,20 +203,42 @@ body {
   direction: rtl;
   justify-content: flex-start;
 }
-
+.wT{
+  .ant-table-tbody .ant-table-row:nth-last-child(2):hover .ant-table-cell {
+    background-color: transparent !important;
+    font-weight: normal;
+  }
+  
+  .ant-table-tbody .ant-table-row:nth-last-child(2)  {
+    background-color: white;
+    font-weight: normal;
+  }
+  
+  .ant-table-tbody .ant-table-row:last-child:hover .ant-table-cell {
+    background-color: transparent;
+    font-weight: normal;
+  }
+  
+  .ant-table-tbody .ant-table-row:last-child{
+    background-color: white;
+    font-weight: normal;
+  }
+}
 .ant-table-tbody .ant-table-row:nth-last-child(2):hover .ant-table-cell {
   background-color: transparent !important;
-  font-weight: bold;
 }
-.ant-table-tbody .ant-table-row:nth-last-child(2) {
+
+.ant-table-tbody .ant-table-row:nth-last-child(2)  {
   background-color: wheat;
   font-weight: bold;
 }
+
 .ant-table-tbody .ant-table-row:last-child:hover .ant-table-cell {
   background-color: transparent;
   font-weight: bold;
 }
-.ant-table-tbody .ant-table-row:last-child {
+
+.ant-table-tbody .ant-table-row:last-child{
   background-color: pink;
   font-weight: bold;
 }
@@ -249,13 +303,14 @@ body {
   background-repeat: no-repeat;
   background-size: contain, cover;
   background-position: center;
-img{
-  position: relative;
-  height: 100vh;
-}
+
+  img {
+    position: relative;
+    height: 100vh;
+  }
 
 
-  
+
   .text-area {
     display: flex;
     flex-direction: column;
@@ -437,18 +492,31 @@ img{
   flex-direction: column;
   padding: 40px;
 }
-.meal{
+.sets{
+  .ant-select-selection-placeholder {
+    color: black !important;
+    font-size: 20px !important;
+  }
+  
+  .ant-select-selector {
+    color: black !important;
+    font-size: 20px !important;
+  
+  }
+}
+.meal {
   .ant-select-selection-placeholder {
     color: #fff !important;
     font-size: 20px !important;
   }
-  
+
   .ant-select-selector {
     color: white !important;
     font-size: 20px !important;
 
   }
 }
+
 .ageSelectSection {
   width: 200px;
   border-radius: 50px 50px;

@@ -2,7 +2,7 @@ import { DeleteTwoTone } from '@ant-design/icons';
 import { Menu, Select, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
-import File from "./File";
+import File from "../src/File";
 import "./style.scss"
 
 const Food = () => {
@@ -16,26 +16,28 @@ const Food = () => {
         fatGram: any;
         proteinGram: any;
         icon: any;
+        quantity: number;
     }
 
     let totalProtein = 0;
     let totalCarbs = 0;
     let totalFats = 0;
     let totalCalories = 0;
+    const [dataChanged, setDataChanged] = useState(false)
     const [key2, setKey2] = useState<number>(0);
     const [meal, setMeal] = useState<string>();
     const [sortedData, setSortedData] = useState<Imenu[]>([])
 
-    const [data, setData] = useState<Imenu[]>([{ key: -1, meal: "ת", name: "סך הכל", calories: totalCalories, carbonGram: totalCarbs, fatGram: totalFats, proteinGram: totalProtein, icon: null }, { key: -2, meal: "ת", name: "אחוז קלורי", calories: totalCalories, carbonGram: totalCarbs, fatGram: totalFats, proteinGram: totalProtein, icon: null }]);
+    const [data, setData] = useState<Imenu[]>([{ key: -1, meal: "ת", quantity: -1, name: "סך הכל", calories: totalCalories, carbonGram: totalCarbs, fatGram: totalFats, proteinGram: totalProtein, icon: null }, { key: -2, meal: "ת", quantity: -1, name: "אחוז קלורי", calories: totalCalories, carbonGram: totalCarbs, fatGram: totalFats, proteinGram: totalProtein, icon: null }]);
 
 
     useEffect(() => {
 
         for (let i = data.length - 3; i >= 0; i--) {
-            totalProtein += data[i].proteinGram
-            totalCalories += data[i].calories
-            totalCarbs += data[i].carbonGram
-            totalFats += data[i].fatGram
+            totalProtein += (data[i].proteinGram * data[i].quantity)
+            totalCalories += (data[i].calories * data[i].quantity)
+            totalCarbs += (data[i].carbonGram * data[i].quantity)
+            totalFats += (data[i].fatGram * data[i].quantity)
         }
 
         const nextList = [...data];
@@ -43,7 +45,7 @@ const Food = () => {
         nextList[nextList.length - 2].carbonGram = (totalCarbs.toFixed(1)) + " גרם";;
         nextList[nextList.length - 2].fatGram = (totalFats.toFixed(1)) + " גרם";;
         nextList[nextList.length - 2].calories = (totalCalories.toFixed(1));
-        
+
         if (nextList.length === 2) {
             nextList[nextList.length - 1].carbonGram = 0 + "%"
             nextList[nextList.length - 1].proteinGram = 0 + "%";
@@ -60,33 +62,35 @@ const Food = () => {
 
         setData(nextList);
 
-        console.log(data);
-        
-        setSortedData(data.sort((a: any, b: any) => a.meal.localeCompare(b.meal, 'he')))
+        if(data.length > 0)
+        {
+            setSortedData(data.sort((a: any, b: any) => a.meal.localeCompare(b.meal, 'he')))
+        }
         
 
-    }, [data.length])
+    }, [dataChanged, data.length])
     useEffect(() => {
         const localStorageData: any = localStorage.getItem("data");
         const localStoragesortedData: any = localStorage.getItem("sortedData");
         const localStoragesortedkey: any = localStorage.getItem("key");
         const localStoragemeal: any = localStorage.getItem("meal");
 
-        if(localStoragesortedkey){
+        if (localStoragesortedkey && localStoragesortedkey !== "undefined") {
             setKey2(JSON.parse(localStoragesortedkey))
         }
-        if (localStorageData) {
+        if (localStorageData && localStorageData !== "undefined") {
             setData(JSON.parse(localStorageData))
 
         }
-        if (localStoragesortedData) {
+        if (localStoragesortedData && localStoragesortedData !== "undefined") {
+            
             setSortedData(JSON.parse(localStoragesortedData))
+            
         }
-        if(localStoragemeal)
-        {
+        if (localStoragemeal && localStoragemeal !== "undefined") {
             setMeal(JSON.parse(localStoragemeal))
         }
-
+        
     }, [])
     useEffect(() => {
         localStorage.setItem("data", JSON.stringify(data))
@@ -98,11 +102,10 @@ const Food = () => {
 
 
     const clearMenu = () => {
-  
-        setData([{ key: -1, meal: "ת", name: "סך הכל", calories: 0 , carbonGram: 0 + " גרם", fatGram: 0+ " גרם", proteinGram: 0+ " גרם", icon: "null" }, { key: -2, meal: "ת", name: "אחוז קלורי", calories: 0, carbonGram: 0+"%", fatGram: 0+"%", proteinGram: 0+"%", icon: "null" }]);
+
+        setData([{ key: -1, meal: "ת", name: "סך הכל", quantity: -1, calories: 0, carbonGram: 0 + " גרם", fatGram: 0 + " גרם", proteinGram: 0 + " גרם", icon: "null" }, { key: -2, quantity: -1, meal: "ת", name: "אחוז קלורי", calories: 0, carbonGram: 0 + "%", fatGram: 0 + "%", proteinGram: 0 + "%", icon: "null" }]);
         setSortedData([]);
         setKey2(0);
-               window.location.reload();
 
     }
     const handleOnChange = (value: any) => {
@@ -130,7 +133,7 @@ const Food = () => {
     { father: "fat", name: "פקאן טבעי - 7 יחידות", calories: 96.74, proteinGram: 1.281, carbonGram: 1.939, fatGram: 10.076, fibers: 1.344, calcium: 9.8, sodium: 0, colesterol: 0, iron: 0.357, vitaminD: 0, vitaminB12: 0 },
     { father: "fat", name: "אגוזי מלך קלופי - 2 יחידות 10 גרם", calories: 68.7, proteinGram: 1.5, carbonGram: 0.7, fatGram: 6.5, fibers: 0.7, calcium: 0, sodium: 0, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 }]
     const protein: any = [
-        {father: "protein", name: "גביע יוגורט פרו 0%", calories: 130, proteinGram: 20, carbonGram: 11.2, fatGram: 0, fibers: 0, calcium: 188, sodium: 66, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
+        { father: "protein", name: "גביע יוגורט פרו 0%", calories: 130, proteinGram: 20, carbonGram: 11.2, fatGram: 0, fibers: 0, calcium: 188, sodium: 66, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
         { father: "protein", name: "גביע דנונה אקטיביה - טעם טבעי", calories: 97.5, proteinGram: 7.2, carbonGram: 7.2, fatGram: 4.5, fibers: 1.35, calcium: 195, sodium: 135, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
         { father: "protein", name: "גביע יופלה תות 0%", calories: 60, proteinGram: 7.35, carbonGram: 5.85, fatGram: 0, fibers: 3.75, calcium: 225, sodium: 82.5, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
         { father: "protein", name: "גבינה לבנה 3%", calories: 205, proteinGram: 23.75, carbonGram: 10.75, fatGram: 7.5, fibers: 0, calcium: 237.5, sodium: 525, colesterol: 22.3, iron: 0, vitaminD: 0, vitaminB12: 0 },
@@ -233,40 +236,41 @@ const Food = () => {
                     bordered={false}
                     placeholder="ארוחה"
                     value={meal}
+                    defaultValue={'בוקר'}
                     onChange={handleOnChange}
                     options={[
                         {
                             value: 'בוקר',
                             label: 'בוקר',
-                            key:1
+                            key: 1
                         },
                         {
                             value: "ביניים ראשונה",
                             label: "ביניים ראשונה",
-                            key:2
+                            key: 2
                         },
                         {
                             value: 'צהריים',
                             label: 'צהריים',
-                            key:3
+                            key: 3
 
                         },
                         {
                             value: "ביניים שנייה",
                             label: "ביניים שנייה",
-                            key:4
+                            key: 4
 
                         },
                         {
                             value: 'ערב',
                             label: 'ערב',
-                            key:5
+                            key: 5
 
                         },
                         {
                             value: 'סופי',
                             label: 'סופי',
-                            key:6
+                            key: 6
 
                         }
 
@@ -279,15 +283,32 @@ const Food = () => {
 
                                 <Menu.SubMenu key="protein" title="חלבון" theme={"dark"} >
                                     {protein.map((pr: any, key: string) => <Menu.Item key={`protein_${key}`} onClick={() => {
-                                        
+
                                         const d = {
                                             meal: meal,
                                             key: key2,
+                                            quantity: 1,
                                             father: "protein", name: pr.name, calories: pr.calories, proteinGram: pr.proteinGram, carbonGram: pr.carbonGram, fatGram: pr.fatGram, fibers: pr.fibers, calcium: pr.calcium, sodium: pr.sodium, colesterol: pr.colesterol, iron: pr.iron, vitaminD: pr.vitaminD, vitaminB12: pr.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+
+
+                                        }
+
+                                        setDataChanged(!dataChanged)
 
                                     }}>{pr.name}</Menu.Item>)}
 
@@ -297,11 +318,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-                                            father: cr.father, name: cr.name, calories: cr.calories, proteinGram: cr.proteinGram, carbonGram: cr.carbonGram, fatGram: cr.fatGram, fibers: cr.fibers, calcium: cr.calcium, sodium: cr.sodium, colesterol: cr.colesterol, iron: cr.iron, vitaminD: cr.vitaminD, vitaminB12: cr.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: cr.name, calories: cr.calories, proteinGram: cr.proteinGram, carbonGram: cr.carbonGram, fatGram: cr.fatGram, fibers: cr.fibers, calcium: cr.calcium, sodium: cr.sodium, colesterol: cr.colesterol, iron: cr.iron, vitaminD: cr.vitaminD, vitaminB12: cr.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{cr.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -310,12 +344,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-
-                                            father: fat.father, name: fat.name, calories: fat.calories, proteinGram: fat.proteinGram, carbonGram: fat.carbonGram, fatGram: fat.fatGram, fibers: fat.fibers, calcium: fat.calcium, sodium: fat.sodium, colesterol: fat.colesterol, iron: fat.iron, vitaminD: fat.vitaminD, vitaminB12: fat.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: fat.name, calories: fat.calories, proteinGram: fat.proteinGram, carbonGram: fat.carbonGram, fatGram: fat.fatGram, fibers: fat.fibers, calcium: fat.calcium, sodium: fat.sodium, colesterol: fat.colesterol, iron: fat.iron, vitaminD: fat.vitaminD, vitaminB12: fat.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{fat.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -324,12 +370,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-
-                                            father: fr.father, name: fr.name, calories: fr.calories, proteinGram: fr.proteinGram, carbonGram: fr.carbonGram, fatGram: fr.fatGram, fibers: fr.fibers, calcium: fr.calcium, sodium: fr.sodium, colesterol: fr.colesterol, iron: fr.iron, vitaminD: fr.vitaminD, vitaminB12: fr.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: fr.name, calories: fr.calories, proteinGram: fr.proteinGram, carbonGram: fr.carbonGram, fatGram: fr.fatGram, fibers: fr.fibers, calcium: fr.calcium, sodium: fr.sodium, colesterol: fr.colesterol, iron: fr.iron, vitaminD: fr.vitaminD, vitaminB12: fr.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{fr.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -338,12 +396,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-
-                                            father: vg.father, name: vg.name, calories: vg.calories, proteinGram: vg.proteinGram, carbonGram: vg.carbonGram, fatGram: vg.fatGram, fibers: vg.fibers, calcium: vg.calcium, sodium: vg.sodium, colesterol: vg.colesterol, iron: vg.iron, vitaminD: vg.vitaminD, vitaminB12: vg.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: vg.name, calories: vg.calories, proteinGram: vg.proteinGram, carbonGram: vg.carbonGram, fatGram: vg.fatGram, fibers: vg.fibers, calcium: vg.calcium, sodium: vg.sodium, colesterol: vg.colesterol, iron: vg.iron, vitaminD: vg.vitaminD, vitaminB12: vg.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{vg.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -352,12 +422,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-
-                                            father: es.father, name: es.name, calories: es.calories, proteinGram: es.proteinGram, carbonGram: es.carbonGram, fatGram: es.fatGram, fibers: es.fibers, calcium: es.calcium, sodium: es.sodium, colesterol: es.colesterol, iron: es.iron, vitaminD: es.vitaminD, vitaminB12: es.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: es.name, calories: es.calories, proteinGram: es.proteinGram, carbonGram: es.carbonGram, fatGram: es.fatGram, fibers: es.fibers, calcium: es.calcium, sodium: es.sodium, colesterol: es.colesterol, iron: es.iron, vitaminD: es.vitaminD, vitaminB12: es.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{es.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -366,12 +448,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-
-                                            father: c.father, name: c.name, calories: c.calories, proteinGram: c.proteinGram, carbonGram: c.carbonGram, fatGram: c.fatGram, fibers: c.fibers, calcium: c.calcium, sodium: c.sodium, colesterol: c.colesterol, iron: c.iron, vitaminD: c.vitaminD, vitaminB12: c.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: c.name, calories: c.calories, proteinGram: c.proteinGram, carbonGram: c.carbonGram, fatGram: c.fatGram, fibers: c.fibers, calcium: c.calcium, sodium: c.sodium, colesterol: c.colesterol, iron: c.iron, vitaminD: c.vitaminD, vitaminB12: c.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{c.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -380,12 +474,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-
-                                            father: sn.father, name: sn.name, calories: sn.calories, proteinGram: sn.proteinGram, carbonGram: sn.carbonGram, fatGram: sn.fatGram, fibers: sn.fibers, calcium: sn.calcium, sodium: sn.sodium, colesterol: sn.colesterol, iron: sn.iron, vitaminD: sn.vitaminD, vitaminB12: sn.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: sn.name, calories: sn.calories, proteinGram: sn.proteinGram, carbonGram: sn.carbonGram, fatGram: sn.fatGram, fibers: sn.fibers, calcium: sn.calcium, sodium: sn.sodium, colesterol: sn.colesterol, iron: sn.iron, vitaminD: sn.vitaminD, vitaminB12: sn.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{sn.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -394,12 +500,24 @@ const Food = () => {
                                         const d = {
                                             meal: meal,
                                             key: key2,
-
-                                            father: al.father, name: al.name, calories: al.calories, proteinGram: al.proteinGram, carbonGram: al.carbonGram, fatGram: al.fatGram, fibers: al.fibers, calcium: al.calcium, sodium: al.sodium, colesterol: al.colesterol, iron: al.iron, vitaminD: al.vitaminD, vitaminB12: al.vitaminB12,
+                                            quantity: 1,
+                                            father: "protein", name: al.name, calories: al.calories, proteinGram: al.proteinGram, carbonGram: al.carbonGram, fatGram: al.fatGram, fibers: al.fibers, calcium: al.calcium, sodium: al.sodium, colesterol: al.colesterol, iron: al.iron, vitaminD: al.vitaminD, vitaminB12: al.vitaminB12,
                                             icon: "delete"
                                         }
-                                        setData([d, ...data])
-                                        setKey2(key2 + 1);
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
 
                                     }}>{al.name}</Menu.Item>)}
                                 </Menu.SubMenu>
@@ -409,18 +527,20 @@ const Food = () => {
 
                         {meal !== 'סופי' ?
                             <Table
+                                className="t2"
                                 pagination={false}
                                 rowKey={'name'}
                                 style={{ direction: "rtl", width: "100vw" }}
-                                columns={getColumns(data.filter((d: any) => d.meal === meal || d.name === "סך הכל" || d.name === "אחוז קלורי"), setData, setKey2, key2, data)}
+                                columns={getColumns(data.filter((d: any) => d.meal === meal || d.name === "סך הכל" || d.name === "אחוז קלורי"), setData, setKey2, key2, data, setDataChanged, dataChanged)}
                                 dataSource={data.filter((d: any) => d.meal === meal || d.name === "סך הכל" || d.name === "אחוז קלורי")}
                             /> :
                             <>
                                 <Table
+                                    className="t2"
                                     pagination={false}
                                     rowKey={'name'}
                                     style={{ direction: "rtl", width: "100vw" }}
-                                    columns={getFinalColumns(data, setData, setKey2, key2, data)}
+                                    columns={getFinalColumns(data, setData, setKey2, key2, data, setDataChanged, dataChanged)}
                                     dataSource={sortedData}
                                 />
                             </>
@@ -440,20 +560,12 @@ const Food = () => {
 export default Food;
 
 
-interface DataType {
-    key: string;
-    name: string;
-    meal: any;
-    calories: number;
-    carbonGram: number;
-    fatGram: number;
-    proteinGram: number;
-    icon: any;
-}
+
 
 interface Imenu {
     meal: any;
     name: string;
+    quantity: number;
     key: number;
     calories: number;
     carbonGram: number;
@@ -461,7 +573,7 @@ interface Imenu {
     proteinGram: number;
     icon: any;
 }
-const getColumns: (data: any[], setData: (data: any) => void, setKey: any, key: any, realData: any[]) => ColumnsType<Imenu> = (data, setData, setKey, key, realData) => [
+const getColumns: (data: any[], setData: (data: any) => void, setKey: any, key: any, realData: any[], setDataChanged: any, dataChanged: any) => ColumnsType<Imenu> = (data, setData, setKey, key, realData, setDataChanged, dataChanged) => [
 
     {
         title: 'מאכל',
@@ -469,6 +581,12 @@ const getColumns: (data: any[], setData: (data: any) => void, setKey: any, key: 
         key: 'name'
     },
     {
+        title: 'כמות',
+        dataIndex: 'quantity',
+        key: 'quantity',
+        render: (text: any) => text === -1 ? "" : text
+    },
+    {
         title: 'חלבון',
         dataIndex: 'proteinGram',
         key: 'proteinGram',
@@ -492,18 +610,18 @@ const getColumns: (data: any[], setData: (data: any) => void, setKey: any, key: 
         title: 'מחיקה',
         dataIndex: 'icon',
         key: 'icon',
-        render: (icon, vh, v2) =>
+        render: (icon: any, vh: any, v2: any) =>
 
             <div onClick={() => {
 
                 setData(realData.filter((d: any) => d.key !== vh.key))
-
+                setDataChanged(!dataChanged)
             }} style={{ fontSize: "25px", cursor: "pointer" }}>{
                     vh.icon === "delete" ? <DeleteTwoTone /> : null
 
                 }</div>
     }]
-const getFinalColumns: (data: any[], setData: (data: any) => void, setKey: any, key: any, realData: any[]) => ColumnsType<Imenu> = (data, setData, setKey, key, realData) => [
+const getFinalColumns: (data: any[], setData: (data: any) => void, setKey: any, key: any, realData: any[], setDataChanged: any, dataChanged: any) => ColumnsType<Imenu> = (data, setData, setKey, key, realData, setDataChanged, dataChanged) => [
 
     {
         title: 'מאכל',
@@ -511,10 +629,16 @@ const getFinalColumns: (data: any[], setData: (data: any) => void, setKey: any, 
         key: 'name',
     },
     {
+        title: 'כמות',
+        dataIndex: 'quantity',
+        key: 'quantity',
+        render: (text: any) => text === -1 ? "" : text
+    },
+    {
         title: "ארוחה",
         dataIndex: "meal",
         key: "meal",
-        render: (text) => text === "ת" ? "" : text
+        render: (text: any) => text === "ת" ? "" : text
     },
     {
         title: 'חלבון',
@@ -540,12 +664,13 @@ const getFinalColumns: (data: any[], setData: (data: any) => void, setKey: any, 
         title: 'מחיקה',
         dataIndex: 'icon',
         key: 'icon',
-        render: (icon, vh, v2) =>
+        render: (icon: any, vh: any, v2: any) =>
             <div onClick={() => {
 
                 setData(realData.filter((d: any) => d.key !== vh.key))
-              
-        
+                setDataChanged(!dataChanged)
+
+
             }} style={{ fontSize: "25px", cursor: "pointer" }}>{
                     vh.icon === "delete" ? <DeleteTwoTone /> : null
 

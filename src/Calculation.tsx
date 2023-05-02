@@ -141,14 +141,14 @@ const Calculation = () => {
       <>
   
         <div className="wrapper">
-          <div className="title" style={{marginBottom:"50px"}}>
+          <div className="title">
             <h1>חישוב קלורי</h1>
           </div>
           <div className="second-wrapper">
             <div className='image1'>
               <div></div>
               <div>
-                <img style={{height:"320px"}} src='/row.jpg' />
+                <img style={{height:"500px"}} src='/row.jpg' />
               </div>
               <div></div>
             </div>
