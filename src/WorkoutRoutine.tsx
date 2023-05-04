@@ -8,7 +8,7 @@ import WorkoutFile from './WorkoutFile';
 
 const WorkoutRoutine = () => {
     const [key2, setKey2] = useState<number>(0);
-    const [day, setDay] = useState<string>("יום ראשון");
+    const [day, setDay] = useState<string>("FBW");
     const [data, setData] = useState<any[]>([]);
     useEffect(() => {
         const localStorageData: any = localStorage.getItem("data2");
@@ -21,12 +21,11 @@ const WorkoutRoutine = () => {
         if (localStorageData) {
             setData(JSON.parse(localStorageData))
         }
-        if(localStoragesortedday)
-        {
+        if (localStoragesortedday) {
             setDay(JSON.parse(localStoragesortedday))
 
         }
-    },[])
+    }, [])
     const handleSetsChange = (cell: any, value: any) => {
         const find = data.findIndex((item: any) => item.day === cell.day && item.exercise === cell.exercise);
         const next = [...data];
@@ -48,11 +47,21 @@ const WorkoutRoutine = () => {
         setData(next)
 
     }
+    const handleKMChange = (cell: any, value: any) => {
+        const find = data.findIndex((item: any) => item.day === cell.day && item.exercise === cell.exercise);
+
+        const next = [...data];
+        console.log(next[find]);
+
+        next[find].km = value;
+        setData(next)
+    }
     const handleDayChange = (value: any) => {
         setDay(value)
     }
     const clearData = () => {
         setData([])
+        setKey2(0)
     }
     useEffect(() => {
         localStorage.setItem("data2", JSON.stringify(data))
@@ -79,174 +88,243 @@ const WorkoutRoutine = () => {
 
         },
         {
-            title: 'סטים',
+            title: 'סטים/ק״מ',
             dataIndex: 'sets',
             key: 'sets',
             render: (text: any, h2: any, h: any) =>
+                <div>
+                    {h2.category !== "אירובי" ?
+                        <>
+                            <Select className='sets' value={h2.sets} onChange={(e: any) => handleSetsChange(h2, e)}
 
-                <Select className='sets' value={h2.sets} onChange={(e: any) => handleSetsChange(h2, e)}
+                                options={[
+                                    {
+                                        value: '1',
+                                        label: '1',
+                                        key: 1
+                                    },
+                                    {
+                                        value: "2",
+                                        label: "2",
+                                        key: 2
+                                    },
+                                    {
+                                        value: "3",
+                                        label: "3",
+                                        key: 3
+                                    },
+                                    {
+                                        value: "4",
+                                        label: "4",
+                                        key: 4
+                                    },
+                                    {
+                                        value: "5",
+                                        label: "5",
+                                        key: 5
+                                    },
+                                    {
+                                        value: "6",
+                                        label: "6",
+                                        key: 6
+                                    }
+                                ]}></Select>
+                        </> :
+                        <Select className='km' value={h2.km} onChange={(e: any) => handleKMChange(h2, e)}
 
-                    options={[
-                        {
-                            value: '1',
-                            label: '1',
-                            key: 1
-                        },
-                        {
-                            value: "2",
-                            label: "2",
-                            key: 2
-                        },
-                        {
-                            value: "3",
-                            label: "3",
-                            key: 3
-                        },
-                        {
-                            value: "4",
-                            label: "4",
-                            key: 4
-                        },
-                        {
-                            value: "5",
-                            label: "5",
-                            key: 5
-                        },
-                        {
-                            value: "6",
-                            label: "6",
-                            key: 6
-                        }
-                    ]}></Select>
+                            options={[
+                                {
+                                    value: '1',
+                                    label: '1',
+                                    key: 1
+                                },
+                                {
+                                    value: "2",
+                                    label: "2",
+                                    key: 2
+                                },
+                                {
+                                    value: "3",
+                                    label: "3",
+                                    key: 3
+                                },
+                                {
+                                    value: "4",
+                                    label: "4",
+                                    key: 4
+                                },
+                                {
+                                    value: "5",
+                                    label: "5",
+                                    key: 5
+                                },
+                                {
+                                    value: "6",
+                                    label: "6",
+                                    key: 6
+                                },
+                                {
+                                    value: "7",
+                                    label: "7",
+                                    key: 7
+                                },
+                                {
+                                    value: "8",
+                                    label: "8",
+                                    key: 8
+                                },
+                                {
+                                    value: "9",
+                                    label: "9",
+                                    key: 9
+                                },
+                                {
+                                    value: "10",
+                                    label: "10",
+                                    key: 10
+                                }
+                            ]}></Select>}
+                </div>
+
         },
         {
             title: 'חזרות',
             dataIndex: 'reps',
             key: 'reps',
-            render: (text: any, vh: any, h: any) => <Select className='sets' onChange={(e: any) => handleRepsChange(vh, e)} value={text}
-                options={[
-                    {
-                        value: '1',
-                        label: '1',
-                        key: 1
-                    },
-                    {
-                        value: "2",
-                        label: "2",
-                        key: 2
-                    },
-                    {
-                        value: "3",
-                        label: "3",
-                        key: 3
-                    },
-                    {
-                        value: "4",
-                        label: "4",
-                        key: 4
-                    },
-                    {
-                        value: "5",
-                        label: "5",
-                        key: 5
-                    },
-                    {
-                        value: "6",
-                        label: "6",
-                        key: 6
-                    },
-                    {
-                        value: "7",
-                        label: "7",
-                        key: 7
-                    },
-                    {
-                        value: "8",
-                        label: "8",
-                        key: 8
-                    },
-                    {
-                        value: "9",
-                        label: "9",
-                        key: 9
-                    },
-                    {
-                        value: "10",
-                        label: "10",
-                        key: 10
-                    },
-                    {
-                        value: "11",
-                        label: "11",
-                        key: 11
-                    }, {
-                        value: "12",
-                        label: "12",
-                        key: 12
-                    }, {
-                        value: "13",
-                        label: "13",
-                        key: 13
-                    }, {
-                        value: "14",
-                        label: "14",
-                        key: 14
-                    }, {
-                        value: "15",
-                        label: "15",
-                        key: 15
-                    }, {
-                        value: "16",
-                        label: "16",
-                        key: 16
-                    }, {
-                        value: "17",
-                        label: "17",
-                        key: 17
-                    }, {
-                        value: "18",
-                        label: "18",
-                        key: 18
-                    }, {
-                        value: "19",
-                        label: "19",
-                        key: 19
-                    }, {
-                        value: "20",
-                        label: "20",
-                        key: 20
-                    },
-                ]}></Select>
+            render: (text: any, vh: any, h: any) =>
+                vh.category !== "אירובי" ?
+                    <>
+                        <Select className='sets' onChange={(e: any) => handleRepsChange(vh, e)} value={text}
+                            options={[
+                                {
+                                    value: '1',
+                                    label: '1',
+                                    key: 1
+                                },
+                                {
+                                    value: "2",
+                                    label: "2",
+                                    key: 2
+                                },
+                                {
+                                    value: "3",
+                                    label: "3",
+                                    key: 3
+                                },
+                                {
+                                    value: "4",
+                                    label: "4",
+                                    key: 4
+                                },
+                                {
+                                    value: "5",
+                                    label: "5",
+                                    key: 5
+                                },
+                                {
+                                    value: "6",
+                                    label: "6",
+                                    key: 6
+                                },
+                                {
+                                    value: "7",
+                                    label: "7",
+                                    key: 7
+                                },
+                                {
+                                    value: "8",
+                                    label: "8",
+                                    key: 8
+                                },
+                                {
+                                    value: "9",
+                                    label: "9",
+                                    key: 9
+                                },
+                                {
+                                    value: "10",
+                                    label: "10",
+                                    key: 10
+                                },
+                                {
+                                    value: "11",
+                                    label: "11",
+                                    key: 11
+                                }, {
+                                    value: "12",
+                                    label: "12",
+                                    key: 12
+                                }, {
+                                    value: "13",
+                                    label: "13",
+                                    key: 13
+                                }, {
+                                    value: "14",
+                                    label: "14",
+                                    key: 14
+                                }, {
+                                    value: "15",
+                                    label: "15",
+                                    key: 15
+                                }, {
+                                    value: "16",
+                                    label: "16",
+                                    key: 16
+                                }, {
+                                    value: "17",
+                                    label: "17",
+                                    key: 17
+                                }, {
+                                    value: "18",
+                                    label: "18",
+                                    key: 18
+                                }, {
+                                    value: "19",
+                                    label: "19",
+                                    key: 19
+                                }, {
+                                    value: "20",
+                                    label: "20",
+                                    key: 20
+                                },
+                            ]}></Select>
+                    </>
+                    : null
         },
         {
             title: 'זמן מנוחה',
             dataIndex: 'rest',
             key: 'rest',
-            render: (text: any, vh: any, h: any) => <Select className='sets' onChange={(e: any) => handleRestChange(vh, e)} value={text}
-                options={[
-                    {
-                        value: '1',
-                        label: '1',
-                        key: 1
-                    },
-                    {
-                        value: "1.5",
-                        label: "1.5",
-                        key: 2
-                    }, {
-                        value: "2",
-                        label: "2",
-                        key: 3
-                    }, {
-                        value: "2.5",
-                        label: "2.5",
-                        key: 4
-                    }, {
-                        value: "3",
-                        label: "3",
-                        key: 5
-                    },
-                ]}></Select>
+            render: (text: any, vh: any, h: any) =>
+                vh.category !== "אירובי" ?
+                    <>
+                        <Select className='sets' onChange={(e: any) => handleRestChange(vh, e)} value={text}
+                            options={[
+                                {
+                                    value: '1',
+                                    label: '1',
+                                    key: 1
+                                },
+                                {
+                                    value: "1.5",
+                                    label: "1.5",
+                                    key: 2
+                                }, {
+                                    value: "2",
+                                    label: "2",
+                                    key: 3
+                                }, {
+                                    value: "2.5",
+                                    label: "2.5",
+                                    key: 4
+                                }, {
+                                    value: "3",
+                                    label: "3",
+                                    key: 5
+                                },
+                            ]}></Select>
+                    </>
+                    : null
         },
         {
             title: 'מחיקה',
@@ -296,6 +374,9 @@ const WorkoutRoutine = () => {
     const biceps: any = [{ name: "כפיפת מרפקים בעמידה עם משקולות", category: "משקולות חופשיות" }, { name: "כפיפת מרפקים כנגד פולי תחתון", category: "פולי תחתון" }, { name: "כפיפת מרפקים בעמידה - פטישים", category: "משקולות חופשיות" }, { name: "כפיפת מרפקים בעמידה עם מוט", category: "מוט חופשי" }, { name: "כפיפת מרפקים בישיבה בשיפוע חיובי", category: "משקולות חופשיות" }, { name: "כפיפת מרפקים יד יד על משענת ספספל בשיפוע חיובי", category: "משקולות חופשיות" }]
 
     const abs: any = [{ name: "כפיפות בטן כנגד פולי עליון על הברכיים", category: "פולי עליון" }, { name: "כפיפות בטן", category: "משקל גוף" }, { name: "ברכיים לחזה", category: "משקל גוף" }, { name: "ברכיים לחזה בתלייה על המתח", category: "משקל גוף" }, { name: "ברכיים לחזה בתלייה על המתח - אלכסונים", category: "משקל גוף" }, { name: "פלאנק", category: "משקל גוף" }, { name: "פלאנק עם רוטצייה מצד לצד", category: "משקל גוף" }, { name: "פלאנק צידי", category: "משקל גוף" }, { name: "כפיפות גו צידיות כנגד פולי תחתון / משקולת", category: "פולי תחתון" }, { name: "רוטצייה של עמוד השדרה כנגד פולי עליון", category: "פולי עליון" }, { name: "אופניים", category: "משקל גוף" }, { name: "russian twist", category: "משקל גוף" }, { name: "Mountain Climbers", category: "משקל גוף" }, { name: "V-Up", category: "משקל גוף" }, { name: "Heel Taps", category: "משקל גוף" }]
+
+    const aerobic: any = [{ name: "ריצה", category: "אירובי" }, { name: "הליכה", category: "אירובי" }];
+
     return (
         <>
             <div className="workout-routine">
@@ -308,44 +389,28 @@ const WorkoutRoutine = () => {
                     onChange={handleDayChange}
                     options={[
                         {
-                            value: 'יום ראשון',
-                            label: 'יום ראשון',
+                            value: 'FBW',
+                            label: 'FBW',
                             key: 1
                         },
                         {
-                            value: 'יום שני',
-                            label: 'יום שני',
+                            value: 'A',
+                            label: 'A',
                             key: 2
                         },
                         {
-                            value: 'יום שלישי',
-                            label: 'יום שלישי',
+                            value: 'B',
+                            label: 'B',
                             key: 3
 
                         },
                         {
-                            value: 'יום רביעי',
-                            label: 'יום רביעי',
+                            value: 'C',
+                            label: 'C',
                             key: 4
 
-                        },
-                        {
-                            value: 'יום חמישי',
-                            label: 'יום חמישי',
-                            key: 5
-
-                        },
-                        {
-                            value: 'יום שישי',
-                            label: 'יום שישי',
-                            key: 6
-
-                        },
-                        {
-                            value: 'יום שבת',
-                            label: 'יום שבת',
-                            key: 7
                         }
+
 
                     ]}
                 ></Select>
@@ -550,6 +615,19 @@ const WorkoutRoutine = () => {
                     <Menu.SubMenu key="abs" title="בטן" theme={"dark"} >
                         {abs.map((cell: any, key: string) => <Menu.Item key={`abs_${key}`} onClick={() => {
                             const d = { exercise: cell.name, key: key2, day: day, category: cell.category, group: "בטן", sets: "1", reps: "1", rest: "1", icon: "delete" }
+                            const check: any = data.find((d2: any) => d2.exercise === d.exercise && d2.day === d.day);
+                            if (check === undefined) {
+                                setData([d, ...data])
+                                setKey2(key2 + 1)
+                            }
+
+
+                        }}>{cell.name}</Menu.Item>)}
+
+                    </Menu.SubMenu>
+                    <Menu.SubMenu key="aerobic" title="אירובי" theme={"dark"} >
+                        {aerobic.map((cell: any, key: string) => <Menu.Item key={`aerobic_${key}`} onClick={() => {
+                            const d = { exercise: cell.name, key: key2, day: day, category: cell.category, group: "אירובי", km: "1", icon: "delete" }
                             const check: any = data.find((d2: any) => d2.exercise === d.exercise && d2.day === d.day);
                             if (check === undefined) {
                                 setData([d, ...data])
