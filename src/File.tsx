@@ -25,9 +25,9 @@ const File = (props: any) => {
                         <Button icon={<DownloadOutlined />} onClick={toPdf}>ייצוא ל-pdf</Button>}
                 </ReactToPdf>
                 <div style={{ position: "absolute", zIndex: -1000, opacity: 0 }}>
-                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start" }} ref={ref}>
-                        <div style={{ position: "relative", height: "2245px", width: "110vw" }} className="back-image">
-                            <img style={{ opacity: 0.25, height: "2245px", width: "110vw", backgroundSize: "cover" }} src="./eladalaluf.jpeg"></img>
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start"}} ref={ref}>
+                        <div style={{ position: "relative", height: "2245px", width: "100%" }} className="back-image">
+                            <img style={{ opacity: 0.25, height: "2245px", width: "100%", backgroundSize: "cover" }} src="./eladalaluf.jpeg"></img>
                             <div className="list">
                                 <h1 style={{ direction: "rtl", textDecoration: "underline" }}>תפריט-תזונה</h1>
 

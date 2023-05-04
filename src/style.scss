@@ -156,10 +156,10 @@ body {
 
 .rows {
   display: grid;
-  grid-template-columns: repeat(6, 200px);
+  grid-template-columns: repeat(6, 100px);
   border: 1px solid black;
   -webkit-user-select: none;
-  width: 90vw;
+  width: 100%;
 
   /* Safari */
   -ms-user-select: none;
@@ -168,7 +168,7 @@ body {
   /* Standard syntax */
   place-items: center;
   height: 100%;
-  font-size: 30px;
+  font-size: 10px;
   text-decoration: underline;
   font-weight: bolder;
   padding-right: 20px;
@@ -178,13 +178,13 @@ body {
 
 .Column {
   display: grid;
-  grid-template-columns: repeat(6, 200px);
+  grid-template-columns: repeat(6, 100px);
   border: 1px solid black;
   -webkit-user-select: none;
   /* Safari */
   -ms-user-select: none;
-  width: 90vw;
-  font-size: 25px;
+  width: 100%;
+  font-size: 10px;
   padding-right: 20px;
   /* IE 10 and IE 11 */
   user-select: none;
