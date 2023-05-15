@@ -23,9 +23,9 @@ const WorkoutFile = (props: any) => {
                         <Button icon={<DownloadOutlined />} onClick={toPdf}>ייצוא ל-pdf</Button>}
                 </ReactToPdf>
                     <div style={{ position: "absolute", zIndex: -1000, opacity: 0 }}>
-                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", height:'70em', width:"60vw" }} ref={ref}>
-                            <div style={{ position: "relative",height:'70em', width:"60vw" }} className="back-image">
-                                <img style={{ opacity: 0.25 , backgroundSize: "cover" ,height:'70em', width:"60vw"}} src="./eladalaluf.jpeg"></img>
+                        <div className="refWrapper" style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", height:'70em' }} ref={ref}>
+                            <div style={{ position: "relative",height:'70em', width:"100%" }} className="back-image">
+                                <img style={{ opacity: 0.25 , backgroundSize: "cover" ,height:'70em', width:"100%"}} src="./eladalaluf.jpeg"></img>
                                 <div className="list">
                                     <h4 style={{ direction: "rtl", textDecoration: "underline", letterSpacing: "1px" }}>תכנית אימונים</h4>
 

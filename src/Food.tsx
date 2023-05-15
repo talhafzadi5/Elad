@@ -62,11 +62,10 @@ const Food = () => {
 
         setData(nextList);
 
-        if(data.length > 0)
-        {
+        if (data.length > 0) {
             setSortedData(data.sort((a: any, b: any) => a.meal.localeCompare(b.meal, 'he')))
         }
-        
+
 
     }, [dataChanged, data.length])
     useEffect(() => {
@@ -83,14 +82,14 @@ const Food = () => {
 
         }
         if (localStoragesortedData && localStoragesortedData !== "undefined") {
-            
+
             setSortedData(JSON.parse(localStoragesortedData))
-            
+
         }
         if (localStoragemeal && localStoragemeal !== "undefined") {
             setMeal(JSON.parse(localStoragemeal))
         }
-        
+
     }, [])
     useEffect(() => {
         localStorage.setItem("data", JSON.stringify(data))
@@ -227,7 +226,20 @@ const Food = () => {
     { father: "alcohol", name: "בירה - 330 מל", calories: 141.9, proteinGram: 1.518, carbonGram: 11.715, fatGram: 0, fibers: 0, calcium: 13.2, sodium: 13.2, colesterol: 0, iron: 0.066, vitaminD: 0, vitaminB12: 0.066 },
     { father: "alcohol", name: "ערק - 2 צייסרים", calories: 150, proteinGram: 0, carbonGram: 0, fatGram: 0, fibers: 0, calcium: 0, sodium: 0, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
     { father: "alcohol", name: "וודקה - 2 צייסרים", calories: 134, proteinGram: 0, carbonGram: 0, fatGram: 0, fibers: 0, calcium: 0, sodium: 0, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 }]
+
+    const glutenFree: any = [{ father: "glutenFree", name: "פסטה ללא גלוטן - מבושל 100 גרם", calories: 177, proteinGram: 3.5, carbonGram: 39.3, fatGram: 0.7, fibers: 0.5, calcium: 0, sodium: 6, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "פסטה ללא גלוטן - מבושל 200 גרם", calories: 354, proteinGram: 7, carbonGram: 78.6, fatGram: 1.4, fibers: 1, calcium: 0, sodium: 12, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "פסטה ללא גלוטן - מבושל 300 גרם", calories: 531, proteinGram: 10.5, carbonGram: 117.9, fatGram: 2.1, fibers: 1.5, calcium: 0, sodium: 18, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "פסטה ללא גלוטן - מבושל 400 גרם", calories: 708, proteinGram: 14, carbonGram: 157.2, fatGram: 2.8, fibers: 2, calcium: 0, sodium: 24, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "קורנפלקס ללא גלוטן - מנה(30 גרם)", calories: 112, proteinGram: 2.3, carbonGram: 24.3, fatGram: 0.5, fibers: 0.4, calcium: 0, sodium: 120, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "חטיף תמרים - יחידה", calories: 99, proteinGram: 1.9, carbonGram: 11.3, fatGram: 4.8, fibers: 1.9, calcium: 0, sodium: 1.3, colesterol: 0, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "לחם ללא גלוטן - 2 פרוסות", calories: 128, proteinGram: 0.7, carbonGram: 23, fatGram: 3.6, fibers: 0.44, calcium: 0, sodium: 236.3, colesterol: 13.2, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "לחם ללא גלוטן - 3 פרוסות", calories: 192, proteinGram: 1, carbonGram: 34.6, fatGram: 5.4, fibers: 0.66, calcium: 0, sodium: 354.4, colesterol: 19.8, iron: 0, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "שניצל תירס טבעול ללא גלוטן - יחידה אחת", calories: 164, proteinGram: 2.8, carbonGram: 22.8, fatGram: 6.7, fibers: 2.6, calcium: 0, sodium: 332, colesterol: 0, iron: 2.7, vitaminD: 0, vitaminB12: 0 },
+    { father: "glutenFree", name: "שניצל תירס טבעול ללא גלוטן - 2 יחידות", calories: 328, proteinGram: 5.6, carbonGram: 45.6, fatGram: 13.4, fibers: 5.2, calcium: 0, sodium: 664, colesterol: 0, iron: 5.4, vitaminD: 0, vitaminB12: 0 }]
+
     return (
+
         <>
             <div className="Food" >
                 <Select
@@ -502,6 +514,32 @@ const Food = () => {
                                             key: key2,
                                             quantity: 1,
                                             father: "protein", name: al.name, calories: al.calories, proteinGram: al.proteinGram, carbonGram: al.carbonGram, fatGram: al.fatGram, fibers: al.fibers, calcium: al.calcium, sodium: al.sodium, colesterol: al.colesterol, iron: al.iron, vitaminD: al.vitaminD, vitaminB12: al.vitaminB12,
+                                            icon: "delete"
+                                        }
+
+                                        const check = data.find((d2: any) => d2.name === d.name && d2.meal === d.meal)
+                                        if (check === undefined) {
+                                            setData([d, ...data])
+                                            setKey2(key2 + 1);
+                                        }
+                                        else {
+                                            const h = data.findIndex((d2: any) => d2.name === check.name);
+                                            const nextList = [...data];
+                                            nextList[h].quantity += 1;
+                                            setData(nextList)
+
+                                        }
+                                        setDataChanged(!dataChanged)
+
+                                    }}>{al.name}</Menu.Item>)}
+                                </Menu.SubMenu>
+                                <Menu.SubMenu key="glutenfree" title="ללא גלוטן" theme={"dark"} >
+                                    {glutenFree.map((al: any, key: string) => <Menu.Item key={`glutenfree_${key}`} onClick={() => {
+                                        const d = {
+                                            meal: meal,
+                                            key: key2,
+                                            quantity: 1,
+                                            father: "glutenfree", name: al.name, calories: al.calories, proteinGram: al.proteinGram, carbonGram: al.carbonGram, fatGram: al.fatGram, fibers: al.fibers, calcium: al.calcium, sodium: al.sodium, colesterol: al.colesterol, iron: al.iron, vitaminD: al.vitaminD, vitaminB12: al.vitaminB12,
                                             icon: "delete"
                                         }
 

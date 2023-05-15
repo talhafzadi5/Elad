@@ -13,7 +13,7 @@ const File = (props: any) => {
     const options = {
 
         unit: 'in',
-        format: "a2",
+        format: "a4",
         color: "black",
 
     };
@@ -25,20 +25,20 @@ const File = (props: any) => {
                         <Button icon={<DownloadOutlined />} onClick={toPdf}>ייצוא ל-pdf</Button>}
                 </ReactToPdf>
                 <div style={{ position: "absolute", zIndex: -1000, opacity: 0 }}>
-                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start"}} ref={ref}>
-                        <div style={{ position: "relative", height: "2245px", width: "100%" }} className="back-image">
-                            <img style={{ opacity: 0.25, height: "2245px", width: "100%", backgroundSize: "cover" }} src="./eladalaluf.jpeg"></img>
+                    <div className="refWrapper" style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", height: '70em' }} ref={ref}>
+                        <div style={{ position: "relative", height: '70em', width: "100%" }} className="back-image">
+                            <img style={{ opacity: 0.25, backgroundSize: "cover", height: '70em', width: "100%" }} src="./eladalaluf.jpeg"></img>
                             <div className="list">
-                                <h1 style={{ direction: "rtl", textDecoration: "underline" }}>תפריט-תזונה</h1>
+                                <h4 style={{ direction: "rtl", textDecoration: "underline", letterSpacing: "1px" }}>תפריט תזונה</h4>
 
-                                <div className="list2">
-                                    <div> <h2 style={{ fontSize: "30px" }}>ארוחת-בוקר</h2>
+                                <div className="list2" style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start" }}>
+                                    <div> <h2 style={{ fontSize: "20px" }}>ארוחת-בוקר</h2>
 
                                         {props.data.filter((d: any) => d.meal === "בוקר").map((da: any) => {
                                             if (da.quantity > 1) {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>• X{da.quantity} {da.name}
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>• X{da.quantity} {da.name}
                                                             -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
@@ -51,7 +51,7 @@ const File = (props: any) => {
                                             else {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>•{da.name} -
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>•{da.name} -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
                                                             שומנים -  {da.fatGram},
@@ -62,12 +62,12 @@ const File = (props: any) => {
                                             }
 
                                         })}</div>
-                                    <div><h2 style={{ fontSize: "30px" }}>ארוחת-ביניים-ראשונה</h2>
+                                    <div><h2 style={{ fontSize: "20px" }}>ארוחת-ביניים-ראשונה</h2>
                                         {props.data.filter((d: any) => d.meal === "ביניים ראשונה").map((da: any) => {
                                             if (da.quantity > 1) {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>• X{da.quantity} {da.name}
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>• X{da.quantity} {da.name}
                                                             -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
@@ -80,7 +80,7 @@ const File = (props: any) => {
                                             else {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>•{da.name} -
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>•{da.name} -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
                                                             שומנים -  {da.fatGram},
@@ -90,12 +90,12 @@ const File = (props: any) => {
                                                 )
                                             }
                                         })}</div>
-                                    <div><h2 style={{ fontSize: "30px" }}>ארוחת-צהריים</h2>
+                                    <div><h2 style={{ fontSize: "20px" }}>ארוחת-צהריים</h2>
                                         {props.data.filter((d: any) => d.meal === "צהריים").map((da: any) => {
                                             if (da.quantity > 1) {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>• X{da.quantity} {da.name}
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>• X{da.quantity} {da.name}
                                                             -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
@@ -108,7 +108,7 @@ const File = (props: any) => {
                                             else {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>•{da.name} -
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>•{da.name} -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
                                                             שומנים -  {da.fatGram},
@@ -118,12 +118,12 @@ const File = (props: any) => {
                                                 )
                                             }
                                         })}</div>
-                                    <div> <h2 style={{ fontSize: "30px" }}>ארוחת-ביניים-שניה</h2>
+                                    <div> <h2 style={{ fontSize: "20px" }}>ארוחת-ביניים-שניה</h2>
                                         {props.data.filter((d: any) => d.meal === "ביניים שנייה").map((da: any) => {
                                             if (da.quantity > 1) {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>• X{da.quantity} {da.name}
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>• X{da.quantity} {da.name}
                                                             -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
@@ -136,7 +136,7 @@ const File = (props: any) => {
                                             else {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>•{da.name} -
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>•{da.name} -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
                                                             שומנים -  {da.fatGram},
@@ -146,12 +146,12 @@ const File = (props: any) => {
                                                 )
                                             }
                                         })}</div>
-                                    <div> <h2 style={{ fontSize: "30px" }}>ארוחת-ערב</h2>
+                                    <div> <h2 style={{ fontSize: "20px" }}>ארוחת-ערב</h2>
                                         {props.data.filter((d: any) => d.meal === "ערב").map((da: any) => {
                                             if (da.quantity > 1) {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>• X{da.quantity} {da.name}
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>• X{da.quantity} {da.name}
                                                             -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
@@ -164,7 +164,7 @@ const File = (props: any) => {
                                             else {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>•{da.name} -
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>•{da.name} -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
                                                             שומנים -  {da.fatGram},
@@ -174,12 +174,12 @@ const File = (props: any) => {
                                                 )
                                             }
                                         })}</div>
-                                    <div> <h2 style={{ fontSize: "30px" }}>סך-הכל</h2>
+                                    <div> <h2 style={{ fontSize: "20px" }}>סך-הכל</h2>
                                         {props.data.filter((d: any) => d.name === "סך הכל").map((da: any) => {
                                             if (da.quantity > 1) {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>• X{da.quantity} {da.name}
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>• X{da.quantity} {da.name}
                                                             -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
@@ -192,7 +192,7 @@ const File = (props: any) => {
                                             else {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>•{da.name} -
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>•{da.name} -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
                                                             שומנים -  {da.fatGram},
@@ -202,12 +202,12 @@ const File = (props: any) => {
                                                 )
                                             }
                                         })}</div>
-                                    <div> <h2 style={{ fontSize: "30px" }}>אחוז-קלורי</h2>
+                                    <div> <h2 style={{ fontSize: "20px" }}>אחוז-קלורי</h2>
                                         {props.data.filter((d: any) => d.name === "אחוז קלורי").map((da: any) => {
                                             if (da.quantity > 1) {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>• X{da.quantity} {da.name}
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>• X{da.quantity} {da.name}
                                                             -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
@@ -220,7 +220,7 @@ const File = (props: any) => {
                                             else {
                                                 return (
                                                     <>
-                                                        <div style={{ fontSize: "25px", letterSpacing: "1px" }} key={da.name}>•{da.name} -
+                                                        <div style={{ fontSize: "15px", letterSpacing: "1px", width: "50vw" }} key={da.name}>•{da.name} -
                                                             חלבון  - {da.proteinGram},
                                                             פחמימות -  {da.carbonGram},
                                                             שומנים -  {da.fatGram},
@@ -230,10 +230,10 @@ const File = (props: any) => {
                                                 )
                                             }
                                         })}</div>
-
-
                                 </div>
-                                <div style={{ wordSpacing: "5px", letterSpacing: "1px", display: "flex", justifyContent: "flex-end", position: "absolute", bottom: 0, flexDirection: "column" }}>
+
+
+                                <div style={{ letterSpacing: "1px", display: "flex", justifyContent: "flex-start", maxWidth: "50vw", position: "absolute", bottom: 0, flexDirection: "column", fontSize: "10px" }}>
                                     <div >
                                         מסמך זה אינו מהווה תחליף להתוויות או הנחיות רפואיות למיניהן
                                     </div>
@@ -245,6 +245,7 @@ const File = (props: any) => {
                                     </div>
 
                                 </div>
+
                             </div>
 
                         </div>
