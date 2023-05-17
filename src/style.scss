@@ -557,15 +557,31 @@ body {
   color: white;
 }
 
+@media (max-width: 3840px){
+  .refWrapper {
+    width:120vw;
+  }
+  .list2tafrit{
+    margin-right: 300px;
+  }
 
+}
 @media (max-width: 1920px){
   .refWrapper {
-    width:48vw;
+    width:50vw;
   }
+  .list2tafrit{
+    margin-right: 105px;
+  }
+
 }
 
 @media (max-width: 1536px){
   .refWrapper {
-    width:60vw;
+    width:62vw;
   }
+  .list2tafrit{
+    margin-right: 105px;
+  }
+
 }
